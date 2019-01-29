@@ -1,5 +1,6 @@
 package com.androphin.ssltest;
 
+import com.androphin.ssltest.net.NetJavaImplCopy;
 import com.androphin.ssltest.net.SSLContextFactory;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
@@ -14,17 +15,9 @@ import javax.net.ssl.SSLContext;
 public class MyGdxGame extends ApplicationAdapter {
 
 	private GameConstants constants;
-
-	private SSLContext sslContext;
 	
 	@Override
 	public void create () {
-
-		try{
-			sslContext = SSLContextFactory.getInstance().makeContext();
-		}catch (Exception ex){
-			System.out.println("SSLContext: "+ex);
-		}
 
 		//Bind SSLcontext to standard libgdx Net implementation
 		//HOW?
@@ -44,6 +37,7 @@ public class MyGdxGame extends ApplicationAdapter {
 		builder.method("POST");
 		builder.followRedirects(false);
 		builder.url("https://localhost:9443");
+		//builder.url("https://www.twitter.com");
 		Net.HttpRequest serverRequest = builder.build();
 
 		//default listener
@@ -78,7 +72,8 @@ public class MyGdxGame extends ApplicationAdapter {
 
 		//fire the requests
 		Gdx.net.sendHttpRequest( normalRequest, responseListenerNormal );
-		Gdx.net.sendHttpRequest( serverRequest, responseListenerAppserver );
+		NetJavaImplCopy test = new NetJavaImplCopy();
+		test.sendHttpRequest( serverRequest, responseListenerAppserver );
 	}
 
 	@Override

@@ -34,7 +34,7 @@ public class SSLContextFactory {
         //KeyManager[] keyManagers = defaultKMFactory.getKeyManagers();
 
         //FileHandle caFile = new FileHandle("Allchain.crt"); //Order: Root -> Intermediate -> Server
-        FileHandle caFile = new FileHandle("cachain.crt"); //Order: Root -> Intermediate
+        FileHandle caFile = new FileHandle("CAchain.crt"); //Order: Root -> Intermediate
         //FileHandle caFile = new FileHandle("Testchain.crt"); //Order: Intermediate -> Root
         //FileHandle caFile = new FileHandle("TestAllchain.crt"); //Order: Server -> Intermediate -> Root
         //FileHandle caFile = new FileHandle("CAroot.crt"); //Root
